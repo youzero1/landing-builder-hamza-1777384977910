@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const plans = [
   {
     name: 'Starter',
@@ -12,6 +14,7 @@ const plans = [
       'Preview deployments',
     ],
     cta: 'Get Started Free',
+    href: '#',
     highlighted: false,
   },
   {
@@ -27,7 +30,8 @@ const plans = [
       'Advanced analytics',
       'Team collaboration',
     ],
-    cta: 'Start Free Trial',
+    cta: 'Buy Now — $29',
+    href: '/checkout',
     highlighted: true,
   },
   {
@@ -45,6 +49,7 @@ const plans = [
       'Custom contracts',
     ],
     cta: 'Contact Sales',
+    href: '#',
     highlighted: false,
   },
 ];
@@ -84,8 +89,8 @@ export default function Pricing() {
                 {plan.period && <span className="text-gray-500">{plan.period}</span>}
               </div>
               <p className="mt-2 text-sm text-gray-600">{plan.description}</p>
-              <a
-                href="#"
+              <Link
+                href={plan.href}
                 className={`mt-6 w-full inline-flex items-center justify-center px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
                   plan.highlighted
                     ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg shadow-indigo-500/25'
@@ -93,7 +98,7 @@ export default function Pricing() {
                 }`}
               >
                 {plan.cta}
-              </a>
+              </Link>
               <ul className="mt-8 space-y-3">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3 text-sm text-gray-600">
